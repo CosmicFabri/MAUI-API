@@ -1,24 +1,43 @@
-﻿namespace Requests
-{
-    public partial class MainPage : ContentPage
-    {
-        int count = 0;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text.Json;
 
+namespace Requests
+{
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
+    {
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
+            GetData();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private readonly HttpClient _httpClient = new HttpClient();
+        private ObservableCollection<PersonaModel> _personas;
+        public ObservableCollection<PersonaModel> Personas
         {
-            count++;
+            get => _personas;
+            set
+            {
+                _personas = value;
+                OnPropertyChanged();
+            }
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        public async void GetData()
+        {
+            var response = await _httpClient
+                .GetStringAsync("https://fi.jcaguilar.dev/v1/escuela/persona");
+            var personas = JsonSerializer
+                .Deserialize<ObservableCollection<PersonaModel>>(response);
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            Personas = personas;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FormPage());
         }
     }
 
