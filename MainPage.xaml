@@ -3,19 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Requests.MainPage">
 
+    <!-- Vista principal -->
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="30">
+            <!-- Título de la página principal -->
+            <Label
+                Text="API de Escuela Persona"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Margin="20" />
+
             <Button
             x:Name="btnFormPage"
             Text="Nueva Persona"
+            WidthRequest="400"
+            HorizontalOptions="Center"
             Clicked="Button_Clicked"/>
             
             <CollectionView ItemsSource="{Binding Personas}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <HorizontalStackLayout>
-                            <Label Text="{Binding nombre}" TextColor="White"/>
-                            <Label Text="{Binding apellido}"/>
+                            <Label Text="{Binding nombre_completo}"/>
                         </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

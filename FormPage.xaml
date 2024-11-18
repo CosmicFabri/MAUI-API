@@ -3,47 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Requests.FormPage"
              Title="FormPage">
-    
-    <!-- Main view -->
-    <VerticalStackLayout>
-        <!-- Campo de nombre -->
-        <HorizontalStackLayout>
+
+    <!-- Vista del formulario -->
+    <VerticalStackLayout Padding="30">
+
+        <!-- Título del formulario -->
+        <Label
+            Text="Formulario creación Persona"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center" />
+
+        <!-- Botón para volver -->
+        <Button
+            WidthRequest="370"
+            Margin="25"
+            Text="Regresar"
+            FontAttributes="Bold"
+            Clicked="Button_Clicked" />
+
+        <!-- Contenido -->
+        <Grid
+            WidthRequest="370"
+            HeightRequest="400"
+            RowSpacing="15"
+            RowDefinitions=".05*,.05*,.05*,.05*,.05*,.05*,.05*"
+            ColumnDefinitions=".1*,.2*">
+
+            <!-- Campo nombre -->
             <Label
-                Text="Nombre: " />
+                Grid.Row="0"
+                Text="Nombre:" />
             <Entry
+                Grid.Column="1"
+                Grid.Row="0"
+                Placeholder="Tu nombre"
                 x:Name="txtNombre" />
-        </HorizontalStackLayout>
-        
-        <!-- Campo de apellido -->
-        <HorizontalStackLayout>
+
+            <!-- Campo apellido -->
             <Label
-                Text="Apellido: " />
+                Grid.Row="1"
+                Text="Apellido:" />
             <Entry
+                Grid.Column="1"
+                Grid.Row="1"
+                Placeholder="Tu apellido"
                 x:Name="txtApellido" />
-        </HorizontalStackLayout>
-        
-        <!-- Campo de sexo -->
-        <HorizontalStackLayout>
+
+            <!-- Campo sexo -->
             <Label
-                Text="Sexo: " />
-            <Entry
-                x:Name="txtSexo" />
-        </HorizontalStackLayout>
-        
-        <!-- Campo fecha nacimiento -->
-        <HorizontalStackLayout>
+                Grid.Row="2"
+                Text="Sexo:" />
+            <HorizontalStackLayout
+                x:Name="radioBtnSexo"
+                Grid.Column="1"
+                Grid.Row="2">
+                <RadioButton x:Name="radioHombre" Content="Hombre" />
+                <RadioButton x:Name="radioMujer" Content="Mujer" />
+                <RadioButton x:Name="radioOtro" Content="Otro" />
+            </HorizontalStackLayout>
+
+            <!-- Campo fecha nacimiento -->
             <Label
-                Text="Fecha nacimiento: " />
+                Grid.Row="3"
+                Text="Fecha nacimiento:" />
             <Entry
+                Grid.Column="1"
+                Grid.Row="3"
+                Placeholder="aaaa-mm-dd"
                 x:Name="txtFhNac" />
-        </HorizontalStackLayout>
-        
-        <!-- Campo ID rol -->
-        <HorizontalStackLayout>
+
+            <!-- Campo rol -->
             <Label
-                Text="ID rol: " />
-            <Entry
-                x:Name="txtIdRol" />
-        </HorizontalStackLayout>
+                x:Name="lblRol"
+                Grid.Row="4"
+                Text="Rol:" />
+            <HorizontalStackLayout
+                x:Name="radioBtnRol"
+                Grid.Column="1"
+                Grid.Row="4"
+                WidthRequest="355">
+                <RadioButton GroupName="" Content="Alumno" />
+                <RadioButton Content="Profesor" />
+                <RadioButton Content="Administrativo" />
+                <RadioButton Content="Otro" />
+            </HorizontalStackLayout>
+        </Grid>
+        
+        <!-- Botón para añadir -->
+        <Button
+            WidthRequest="370"
+            Margin="-95"
+            Text="Añadir persona"
+            FontAttributes="Bold"
+            Clicked="ButtonPost_Clicked" />
     </VerticalStackLayout>
+
 </ContentPage>

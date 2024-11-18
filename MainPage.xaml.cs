@@ -14,8 +14,9 @@ namespace Requests
         }
 
         private readonly HttpClient _httpClient = new HttpClient();
+
         private ObservableCollection<PersonaModel> _personas;
-        public ObservableCollection<PersonaModel> Personas
+        public ObservableCollection<PersonaModel> Personas  
         {
             get => _personas;
             set
